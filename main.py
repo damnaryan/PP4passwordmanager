@@ -1,4 +1,14 @@
+from cryptography.fernet import Fernet
+#library used for encryption
+
 master_pwd = input("Enter the master password: ")
+
+def write_key():
+    key = Fernet.generate_key()
+    with open('key.key', 'wb') as key_file:
+        key_file.write(key)
+        
+write_key()
 
 def view():
     with open('passwords.txt', 'r') as f: 
@@ -18,10 +28,10 @@ def add():
     
     with open('passwords.txt', 'a') as f:
         f.write(f"{acc_name} | {acc_pwd} \n")
-# 'open('file_name', 'open_mode')' cmd is used to open a file in a specific mode,
-# main ones include 'r' for read only mode; 'w' for overwite mode and 'a' of append mode.
-# ... more under 'leanings'.
-# (\n) is used to prevent stacking of different password data in same line. 
+    # 'open('file_name', 'open_mode')' cmd is used to open a file in a specific mode,
+    # main ones include 'r' for read only mode; 'w' for overwite mode and 'a' of append mode.
+    # ... more under 'leanings'.
+    # (\n) is used to prevent stacking of different password data in same line. 
 
 while True:
     mode = input("Do you want to add a new password or view the existing ones or type 'q' to quit? (view/add): ")
